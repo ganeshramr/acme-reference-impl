@@ -9,10 +9,9 @@ buildscript {
   dependencies {
 	  //gradle appRun:For Rapid Development - http://akhikhl.github.io/gretty-doc/Getting-started.html
     classpath 'org.akhikhl.gretty:gretty:+'
+    classpath files('lib/ojdbc6.jar')
   }
 }
-
-
 
 repositories {
     mavenCentral()
@@ -23,9 +22,9 @@ configurations {
   }
 
 dependencies {
-	//Jesery framework
+  //Jesery framework
   compile 'org.glassfish.jersey.containers:jersey-container-servlet:2.21'
-   //Logging framework
+  //Logging framework
   compile group: 'org.apache.logging.log4j', name: 'log4j-api', version: '2.3'
   compile group: 'org.apache.logging.log4j', name: 'log4j-core', version: '2.3'
   //Swagger - API documentation
@@ -53,7 +52,11 @@ dependencies {
   compile 'org.hibernate:hibernate-entitymanager:5.0.1.Final'
   compile 'org.hsqldb:hsqldb:2.3.3'
 
+  //Hibernate
+  compile 'org.hibernate:hibernate-core:5.0.1.Final'
   
+  //Oracle JDBC Driver
+  compile files('lib/ojdbc6.jar')
 }
 
 

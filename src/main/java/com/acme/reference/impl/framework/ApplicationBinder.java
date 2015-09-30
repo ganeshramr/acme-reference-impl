@@ -12,6 +12,7 @@ public class ApplicationBinder extends AbstractBinder {
     protected void configure() {
     	//USE THIS ONLY IF THE JerseyHk2AnnotationScanner when cannot be used
     	bindFactory(EMFFactory.class).to(EntityManagerFactory.class).in(Singleton.class);
+    	bindFactory(EMOracleFactory.class).to(EntityManagerFactory.class).in(Singleton.class);
     	bindFactory(AppEntityManagerFactory.class).to(EntityManager.class).in(RequestScoped.class);
     	
     

@@ -15,4 +15,4 @@ A reference implementation project with
 
 clone and run **gradlew appRun**
 
-launch ***http://localhost:8080/acme-refrence-imp/ui/swagger-ui/index.html***
+launch ***http://localhost:8080/acme-reference-impl/ui/swagger-ui/index.html***
