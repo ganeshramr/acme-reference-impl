@@ -14,7 +14,6 @@ import javax.ws.rs.core.Response;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import com.acme.reference.impl.dto.BenchmarkClientOracleDTO;
 import com.acme.reference.impl.exception.BechmarkClientServiceException;
 import com.acme.reference.impl.service.BechmarkClientMngmtOracleService;
 
@@ -35,7 +34,7 @@ public class BechmarkReadOracleResource {
 	public Response readBenchmarkClient(@PathParam("id") Long id) {
 
 		logger.debug("readBenchmarkClient is invoked for client id {}", id);
-		BenchmarkClientOracleDTO reponse = null;
+		String reponse = null;
 		try {
 			reponse = bechmarkClientMngmtOracleService.readClient(id);
 		} catch (BechmarkClientServiceException e) {

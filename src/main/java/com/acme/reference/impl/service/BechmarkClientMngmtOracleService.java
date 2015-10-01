@@ -26,7 +26,6 @@ public class BechmarkClientMngmtOracleService {
 	@Inject
 	public BechmarkClientMngmtOracleService(
 			@OracleDAO final BenchmarkAggregatorDAOI<BenchmarkClientOracle> benchmarkClientMgmtOracleDAO) {
-
 		this.benchmarkClientMgmtOracleDAO = benchmarkClientMgmtOracleDAO;
 	}
 
@@ -37,7 +36,6 @@ public class BechmarkClientMngmtOracleService {
 
 		ObjectMapper mapper = new ObjectMapper();
 		try {
-
 			logger.debug(mapper.writerWithDefaultPrettyPrinter().writeValueAsString(benchmarkClientOracleDTO));
 
 			BenchmarkClientOracle benchmarkClientOracle = new BenchmarkClientOracle();
@@ -46,27 +44,20 @@ public class BechmarkClientMngmtOracleService {
 			benchmarkClientOracle.setName(mapper.writeValueAsString(benchmarkClientOracleDTO.getName()));
 
 			return benchmarkClientMgmtOracleDAO.create(benchmarkClientOracle);
-
 		} catch (JsonProcessingException e) {
-
 			e.printStackTrace();
 			throw new BechmarkClientServiceException("CREATION Failed");
 		}
 
 	}
 
-	public BenchmarkClientOracleDTO readClient(Long id) throws BechmarkClientServiceException {
+	public String readClient(Long id) throws BechmarkClientServiceException {
 
 		logger.debug("BechmarkClientMngmtOracleService: readClient is invoked for id {}", id);
 
 		try {
-
-			ObjectMapper mapper = new ObjectMapper();
-			return mapper.readValue(benchmarkClientMgmtOracleDAO.read(id).getName().getBytes(),
-					BenchmarkClientOracleDTO.class);
-
+			return benchmarkClientMgmtOracleDAO.read(id).getName();
 		} catch (Exception e) {
-
 			e.printStackTrace();
 			throw new BechmarkClientServiceException("READ Failed");
 		}

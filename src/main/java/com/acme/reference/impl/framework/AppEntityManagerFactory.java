@@ -12,6 +12,7 @@ import org.apache.logging.log4j.Logger;
 import org.glassfish.hk2.api.Factory;
 import org.glassfish.jersey.server.CloseableService;
 
+import com.acme.reference.impl.di.qualifiers.InMemoryDAO;
 import com.acme.reference.impl.rest.BechmarkClientResource;
 
 
@@ -23,7 +24,7 @@ public class AppEntityManagerFactory implements Factory<EntityManager> {
 	private static final Logger logger = LogManager.getLogger(BechmarkClientResource.class);
 
     @Inject
-    public AppEntityManagerFactory (EntityManagerFactory emf,CloseableService closeableService){
+    public AppEntityManagerFactory (@InMemoryDAO EntityManagerFactory emf,CloseableService closeableService){
         this.emf =emf;
         this.closeableService = closeableService;
     }

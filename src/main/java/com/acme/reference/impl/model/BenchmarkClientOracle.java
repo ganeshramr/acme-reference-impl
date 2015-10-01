@@ -5,14 +5,9 @@ import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
 @Entity
-@NamedQueries({
-		@NamedQuery(name = "InsertStock", query = "INSERT INTO STOCK (STOCK_ID, STOCK_CODE, STOCK_NAME) VALUES (?, ?, ?)"),
-		@NamedQuery(name = "ReadStock", query = "SELECT STOCK_ID, STOCK_CODE, STOCK_NAME FROM STOCK WHERE STOCK_ID = ?") })
 @Table(name = "STOCK")
 public class BenchmarkClientOracle implements Serializable {
 

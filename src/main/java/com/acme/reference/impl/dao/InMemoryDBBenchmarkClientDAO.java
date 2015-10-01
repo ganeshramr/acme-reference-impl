@@ -9,12 +9,12 @@ import org.jvnet.hk2.annotations.Service;
 import com.acme.reference.impl.di.qualifiers.InMemoryDAO;
 import com.acme.reference.impl.model.BenchmarkClient;
 
-@InMemoryDAO
 @Service 
 @PerLookup
 public class InMemoryDBBenchmarkClientDAO implements BenchmarkAggregatorDAOI<BenchmarkClient> {
 	
 	@Inject
+	@InMemoryDAO
 	EntityManager em;
 
 	@Override
