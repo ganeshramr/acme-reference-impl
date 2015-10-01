@@ -8,6 +8,7 @@ import org.glassfish.hk2.api.PerLookup;
 import org.jvnet.hk2.annotations.Service;
 
 import com.acme.reference.impl.dao.BenchmarkAggregatorDAOI;
+import com.acme.reference.impl.di.qualifiers.Oracle;
 import com.acme.reference.impl.di.qualifiers.OracleDAO;
 import com.acme.reference.impl.dto.BenchmarkClientOracleDTO;
 import com.acme.reference.impl.exception.BechmarkClientServiceException;
@@ -25,7 +26,7 @@ public class BechmarkClientMngmtOracleService {
 
 	@Inject
 	public BechmarkClientMngmtOracleService(
-			@OracleDAO final BenchmarkAggregatorDAOI<BenchmarkClientOracle> benchmarkClientMgmtOracleDAO) {
+			@Oracle final BenchmarkAggregatorDAOI<BenchmarkClientOracle> benchmarkClientMgmtOracleDAO) {
 		this.benchmarkClientMgmtOracleDAO = benchmarkClientMgmtOracleDAO;
 	}
 

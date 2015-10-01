@@ -20,7 +20,7 @@ public class ApplicationBinder extends AbstractBinder {
 				.in(Singleton.class);
 		bindFactory(AppEntityManagerFactory.class).to(EntityManager.class).qualifiedBy(new InMemoryDAO_())
 				.in(RequestScoped.class);
-		bindFactory(AppEntityManagerFactory.class).to(EntityManager.class).qualifiedBy(new OracleDAO_())
+		bindFactory(OracleEntityManagerFactory.class).to(EntityManager.class).qualifiedBy(new OracleDAO_())
 				.in(RequestScoped.class);
 
 	}

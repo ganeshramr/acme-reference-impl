@@ -7,10 +7,12 @@ import javax.persistence.Query;
 import org.glassfish.hk2.api.PerLookup;
 import org.jvnet.hk2.annotations.Service;
 
+import com.acme.reference.impl.di.qualifiers.Oracle;
 import com.acme.reference.impl.di.qualifiers.OracleDAO;
 import com.acme.reference.impl.constants.Constants;
 import com.acme.reference.impl.model.BenchmarkClientOracle;
 
+@Oracle
 @Service
 @PerLookup
 public class OracleDBBenchmarkClientDAO implements BenchmarkAggregatorDAOI<BenchmarkClientOracle> {
