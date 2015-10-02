@@ -32,7 +32,9 @@ public class BenchmarkClientMQServices {
 		try {
 			
 			BenchmarkClientMQProducer benchmarkclientProducer = new BenchmarkClientMQProducer(mapper.writeValueAsString(benchmarkclientmqDTO.getQueueName()));
-			benchmarkclientProducer.send(mapper.writeValueAsString(benchmarkclientmqDTO.getMessage()));
+			String message = benchmarkclientmqDTO.getMessage();
+			logger.debug("BenchmarkClientMQServices:createClient is invoked" + message);
+			benchmarkclientProducer.send(mapper.writeValueAsString(message));			
 			return "Success";
 
 		} catch (Exception e) {
