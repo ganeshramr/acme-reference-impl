@@ -6,8 +6,8 @@ public class BenchmarkClientMQProducer {
 	
 	private BenchmarkClientMQTunnel tunnel;
 
-	public BenchmarkClientMQProducer(String queue, String host) {
-		this.tunnel = BenchmarkClientMQTunnel.newInstance(queue, host);
+	public BenchmarkClientMQProducer(String queue) {
+		this.tunnel = BenchmarkClientMQTunnel.newInstance(queue);
 	}
 
 	public void send(String message) {

@@ -12,8 +12,6 @@ buildscript {
   }
 }
 
-
-
 repositories {
     mavenCentral()
 }
@@ -53,6 +51,8 @@ dependencies {
   compile 'org.hibernate:hibernate-entitymanager:5.0.1.Final'
   compile 'org.hsqldb:hsqldb:2.3.3'
 
+  //RabbitMQ Server
+  compile 'com.rabbitmq:amqp-client:3.5.5'
   
 }
 

@@ -20,8 +20,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 public class BechmarkClientMngmtService {
 	
 	private static final Logger logger = LogManager.getLogger(BechmarkClientMngmtService.class);	
-	
-	
 	private final BenchmarkAggregatorDAOI<BenchmarkClient> benchmarkClientMgmtDAO;
 	
 	@Inject 
@@ -49,9 +47,7 @@ public class BechmarkClientMngmtService {
 			
 			e.printStackTrace();
 			throw new BechmarkClientServiceException("CREATION Failed");
-		}
-		
-		
+		}		
 	}
 	
 	

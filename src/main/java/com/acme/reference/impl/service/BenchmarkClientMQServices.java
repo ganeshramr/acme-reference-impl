@@ -1,5 +1,7 @@
 package com.acme.reference.impl.service;
 
+import java.util.List;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.glassfish.hk2.api.PerLookup;
@@ -25,21 +27,13 @@ public class BenchmarkClientMQServices {
 	 */
 	public String createClient(BenchmarkClientMQDTO benchmarkclientmqDTO) throws BechmarkClientServiceException {
 
-		logger.debug("BenchmarkClientMQServices:createClient  is invoked");
-
+		logger.debug("BenchmarkClientMQServices:createClient is invoked");
 		ObjectMapper mapper = new ObjectMapper();
 		try {
-
-			logger.debug(mapper.writerWithDefaultPrettyPrinter().writeValueAsString(benchmarkclientmqDTO));
-
-			String queue = mapper.writeValueAsString(benchmarkclientmqDTO.getQueueName());
-			String host = mapper.writeValueAsString(benchmarkclientmqDTO.getHostName());
-			String message = mapper.writeValueAsString(benchmarkclientmqDTO.getMessage());
 			
-			BenchmarkClientMQProducer bcProducer = new BenchmarkClientMQProducer(queue, host);
-			bcProducer.send(message);			
-
-			return mapper.readValue("Success", String.class);
+			BenchmarkClientMQProducer benchmarkclientProducer = new BenchmarkClientMQProducer(mapper.writeValueAsString(benchmarkclientmqDTO.getQueueName()));
+			benchmarkclientProducer.send(mapper.writeValueAsString(benchmarkclientmqDTO.getMessage()));
+			return "Success";
 
 		} catch (Exception e) {
 
@@ -49,19 +43,15 @@ public class BenchmarkClientMQServices {
 
 	}
 
-	public String readClient(BenchmarkClientMQDTO benchmarkclientmqDTO) throws BechmarkClientServiceException {
+	public String readClient(String queueName) throws BechmarkClientServiceException {
 
 		logger.debug("BechmarkClientMngmtService:readClient is invoked");
 		
 		ObjectMapper mapper = new ObjectMapper();
-		try {
-
-			String queue = mapper.writeValueAsString(benchmarkclientmqDTO.getQueueName());
-			String host = mapper.writeValueAsString(benchmarkclientmqDTO.getHostName());
+		try {				
 			
-			BenchmarkClientMQConsumer benchmarkclientmqConsumer = new BenchmarkClientMQConsumer(queue, host);
-			
-			return mapper.readValue(benchmarkclientmqConsumer.receive(), String.class);
+			logger.info("Queue ***************: " + queueName);			
+			return new BenchmarkClientMQConsumer(queueName).receive().toString();
 
 		} catch (Exception e) {
 
