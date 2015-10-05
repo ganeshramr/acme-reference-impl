@@ -9,6 +9,7 @@ buildscript {
   dependencies {
 	  //gradle appRun:For Rapid Development - http://akhikhl.github.io/gretty-doc/Getting-started.html
     classpath 'org.akhikhl.gretty:gretty:+'
+    classpath files('lib/ojdbc6.jar')
   }
 }
 
@@ -53,7 +54,11 @@ dependencies {
   compile 'org.hibernate:hibernate-entitymanager:5.0.1.Final'
   compile 'org.hsqldb:hsqldb:2.3.3'
 
+  //Hibernate
+  compile 'org.hibernate:hibernate-core:5.0.1.Final'
   
+  //Oracle JDBC Driver
+  compile files('lib/ojdbc6.jar')
 }
 
 

@@ -4,12 +4,8 @@ package com.acme.reference.impl.di.qualifiers;
 
 import org.glassfish.hk2.api.AnnotationLiteral;
 
-public class DMX_ extends AnnotationLiteral<DMX>
-implements DMX {
+public class DMX_ extends AnnotationLiteral<DMX>implements DMX {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 
 }

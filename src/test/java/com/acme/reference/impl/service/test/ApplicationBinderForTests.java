@@ -11,6 +11,7 @@ import org.glassfish.jersey.process.internal.RequestScoped;
 
 import com.acme.reference.impl.dao.BenchmarkAggDAOI;
 import com.acme.reference.impl.dao.BenchmarkClientDAO;
+import com.acme.reference.impl.dao.DMXDao;
 import com.acme.reference.impl.dao.em.AppEMFFactory;
 import com.acme.reference.impl.dao.em.AppEntityManagerFactory;
 import com.acme.reference.impl.dao.em.DMXEMFFactory;
@@ -18,7 +19,9 @@ import com.acme.reference.impl.dao.em.DMXEntityManagerFactory;
 import com.acme.reference.impl.di.qualifiers.Benchmark_;
 import com.acme.reference.impl.di.qualifiers.DMX_;
 import com.acme.reference.impl.model.BenchmarkClient;
+import com.acme.reference.impl.model.DMXClient;
 import com.acme.reference.impl.service.BechmarkClientMngmtService;
+import com.acme.reference.impl.service.DMXClientMngmtService;
 import com.acme.reference.impl.service.DemoService;
 
 /*
@@ -26,16 +29,24 @@ import com.acme.reference.impl.service.DemoService;
  * 
  * */
 public class ApplicationBinderForTests extends AbstractBinder {
-    @Override
-    protected void configure() {
-    	//USE THIS ONLY FOR TESTS
-       bind(DemoService.class).to(DemoService.class);
-       bind(BechmarkClientMngmtService.class).to(BechmarkClientMngmtService.class).in(PerLookup.class);
-       bind(BenchmarkClientDAO.class).named("BenchmarkClientDAO").to(new TypeLiteral<BenchmarkAggDAOI<BenchmarkClient>>() {}).in(PerLookup.class);
-       bindFactory(AppEMFFactory.class).to(EntityManagerFactory.class).qualifiedBy(new Benchmark_()).in(Singleton.class);
-       bindFactory(DMXEMFFactory.class).to(EntityManagerFactory.class).qualifiedBy(new DMX_()).in(Singleton.class);
-       bindFactory(AppEntityManagerFactory.class).to(EntityManager.class).qualifiedBy(new Benchmark_()).in(RequestScoped.class);
-       bindFactory(DMXEntityManagerFactory.class).to(EntityManager.class).qualifiedBy(new DMX_()).in(RequestScoped.class);
-   	
-    }
+	@Override
+	protected void configure() {
+		// USE THIS ONLY FOR TESTS
+		bind(DemoService.class).to(DemoService.class);
+		bind(BechmarkClientMngmtService.class).to(BechmarkClientMngmtService.class).in(PerLookup.class);
+		bind(DMXClientMngmtService.class).to(DMXClientMngmtService.class).in(PerLookup.class);
+		bind(BenchmarkClientDAO.class).named("BenchmarkClientDAO")
+				.to(new TypeLiteral<BenchmarkAggDAOI<BenchmarkClient>>() {
+				}).in(PerLookup.class);
+		bind(DMXDao.class).named("DMXDao").to(new TypeLiteral<BenchmarkAggDAOI<DMXClient>>() {
+		}).in(PerLookup.class);
+		bindFactory(AppEMFFactory.class).to(EntityManagerFactory.class).qualifiedBy(new Benchmark_())
+				.in(Singleton.class);
+		bindFactory(DMXEMFFactory.class).to(EntityManagerFactory.class).qualifiedBy(new DMX_()).in(Singleton.class);
+		bindFactory(AppEntityManagerFactory.class).to(EntityManager.class).qualifiedBy(new Benchmark_())
+				.in(RequestScoped.class);
+		bindFactory(DMXEntityManagerFactory.class).to(EntityManager.class).qualifiedBy(new DMX_())
+				.in(RequestScoped.class);
+
+	}
 }

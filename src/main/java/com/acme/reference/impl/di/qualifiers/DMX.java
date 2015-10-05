@@ -11,7 +11,7 @@ import javax.inject.Qualifier;
 
 @Qualifier
 @Retention(RUNTIME)
-@Target( {PARAMETER,FIELD })
+@Target({ PARAMETER, FIELD })
 public @interface DMX {
 
 }
