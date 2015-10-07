@@ -1,14 +1,14 @@
 package com.acme.reference.impl.service;
 
 import javax.inject.Inject;
+import javax.inject.Named;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.glassfish.hk2.api.PerLookup;
 import org.jvnet.hk2.annotations.Service;
 
-import com.acme.reference.impl.dao.BenchmarkAggregatorDAOI;
-import com.acme.reference.impl.di.qualifiers.InMemory;
+import com.acme.reference.impl.dao.BenchmarkAggDAOI;
 import com.acme.reference.impl.dto.BenchmarkClientDTO;
 import com.acme.reference.impl.exception.BechmarkClientServiceException;
 import com.acme.reference.impl.model.BenchmarkClient;
@@ -22,12 +22,12 @@ public class BechmarkClientMngmtService {
 	private static final Logger logger = LogManager.getLogger(BechmarkClientMngmtService.class);	
 	
 	
-	private final BenchmarkAggregatorDAOI<BenchmarkClient> benchmarkClientMgmtDAO;
+	private final BenchmarkAggDAOI<BenchmarkClient> benchmarkClientMgmtDAO;
 	
 	@Inject 
-	public BechmarkClientMngmtService(@InMemory final BenchmarkAggregatorDAOI<BenchmarkClient> benchmarkClientMgmtDAO){
+	public BechmarkClientMngmtService(@Named ("BenchmarkClientDAO") final BenchmarkAggDAOI<BenchmarkClient> benchmarkClientDAO){
 		
-		this.benchmarkClientMgmtDAO = benchmarkClientMgmtDAO; 
+		this.benchmarkClientMgmtDAO = benchmarkClientDAO; 
 	}
 	
 	
@@ -43,7 +43,7 @@ public class BechmarkClientMngmtService {
 			BenchmarkClient benchmarkClient = new BenchmarkClient();
 			benchmarkClient.setDetails(mapper.writeValueAsString(benchmarkClientDTO));
 			
-			return benchmarkClientMgmtDAO.create(benchmarkClient);
+			return String.valueOf(benchmarkClientMgmtDAO.create(benchmarkClient).getId());
 			
 		} catch (JsonProcessingException e) {
 			
@@ -62,7 +62,7 @@ public BenchmarkClientDTO readClient(Long clientId) throws BechmarkClientService
 		try {
 			
 			ObjectMapper mapper = new ObjectMapper();
-			return mapper.readValue(benchmarkClientMgmtDAO.read(clientId).getDetails().getBytes(), BenchmarkClientDTO.class);
+			return mapper.readValue(benchmarkClientMgmtDAO.read(clientId,BenchmarkClient.class).getDetails().getBytes(), BenchmarkClientDTO.class);
 			
 			
 		} catch (Exception e) {

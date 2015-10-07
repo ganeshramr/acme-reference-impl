@@ -12,4 +12,5 @@ public class DMXDao {
 	EntityManager em;
 
 	//DO DMX stuff here
+	
 }

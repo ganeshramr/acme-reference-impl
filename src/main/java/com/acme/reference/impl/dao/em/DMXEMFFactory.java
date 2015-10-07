@@ -1,4 +1,4 @@
-package com.acme.reference.impl.framework;
+package com.acme.reference.impl.dao.em;
 
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;

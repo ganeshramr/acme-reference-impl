@@ -1,4 +1,4 @@
-package com.acme.reference.impl.framework;
+package com.acme.reference.impl.dao.em;
 
 import java.io.Closeable;
 import java.io.IOException;
@@ -12,11 +12,11 @@ import org.apache.logging.log4j.Logger;
 import org.glassfish.hk2.api.Factory;
 import org.glassfish.jersey.server.CloseableService;
 
-import com.acme.reference.impl.di.qualifiers.Benchmark;
+import com.acme.reference.impl.di.qualifiers.DMX;
 import com.acme.reference.impl.rest.BechmarkClientResource;
 
 
-public class AppEntityManagerFactory implements Factory<EntityManager> {
+public class DMXEntityManagerFactory implements Factory<EntityManager> {
   
 	private EntityManager em;
 	private EntityManagerFactory emf;
@@ -24,7 +24,7 @@ public class AppEntityManagerFactory implements Factory<EntityManager> {
 	private static final Logger logger = LogManager.getLogger(BechmarkClientResource.class);
 
     @Inject
-    public AppEntityManagerFactory (@Benchmark EntityManagerFactory emf,CloseableService closeableService){
+    public DMXEntityManagerFactory (@DMX EntityManagerFactory emf,CloseableService closeableService){
         this.emf =emf;
         this.closeableService = closeableService;
     }

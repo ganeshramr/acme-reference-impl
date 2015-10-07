@@ -1,4 +1,4 @@
-package com.acme.reference.impl.framework;
+package com.acme.reference.impl.dao.em;
 
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
@@ -8,6 +8,7 @@ import org.apache.logging.log4j.Logger;
 import org.glassfish.hk2.api.Factory;
 
 import com.acme.reference.impl.rest.BechmarkClientResource;
+
 
 public class AppEMFFactory implements Factory<EntityManagerFactory> {
 	

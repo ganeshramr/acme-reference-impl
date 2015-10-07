@@ -7,6 +7,10 @@ import javax.persistence.EntityManagerFactory;
 import org.glassfish.hk2.utilities.binding.AbstractBinder;
 import org.glassfish.jersey.process.internal.RequestScoped;
 
+import com.acme.reference.impl.dao.em.AppEMFFactory;
+import com.acme.reference.impl.dao.em.AppEntityManagerFactory;
+import com.acme.reference.impl.dao.em.DMXEMFFactory;
+import com.acme.reference.impl.dao.em.DMXEntityManagerFactory;
 import com.acme.reference.impl.di.qualifiers.Benchmark_;
 import com.acme.reference.impl.di.qualifiers.DMX_;
 
