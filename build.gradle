@@ -52,7 +52,12 @@ dependencies {
   compile 'org.hibernate.javax.persistence:hibernate-jpa-2.1-api:1.0.0.Final'
   compile 'org.hibernate:hibernate-entitymanager:5.0.1.Final'
   compile 'org.hsqldb:hsqldb:2.3.3'
-
+  
+  //JMS
+  compile 'javax.jms:javax.jms-api:2.0.1'
+  
+  //Apache ActiveMQ
+  compile 'org.apache.activemq:activemq-all:5.12.0'
   
 }
 
