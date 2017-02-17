@@ -13,15 +13,13 @@ import org.glassfish.hk2.api.Factory;
 import org.glassfish.jersey.server.CloseableService;
 
 import com.acme.reference.impl.di.qualifiers.DMX;
-import com.acme.reference.impl.rest.BechmarkClientResource;
-
 
 public class DMXEntityManagerFactory implements Factory<EntityManager> {
   
 	private EntityManager em;
 	private EntityManagerFactory emf;
 	private CloseableService closeableService;
-	private static final Logger logger = LogManager.getLogger(BechmarkClientResource.class);
+	private static final Logger logger = LogManager.getLogger(DMXEntityManagerFactory.class);
 
     @Inject
     public DMXEntityManagerFactory (@DMX EntityManagerFactory emf,CloseableService closeableService){
@@ -33,13 +31,13 @@ public class DMXEntityManagerFactory implements Factory<EntityManager> {
     public EntityManager provide() {
     		
     	em = emf.createEntityManager();
-    	logger.debug("-------------OPENING EM-------------HASH:"+em.hashCode());
+    	logger.debug("-------------OPENING DMX EM-------------HASH:"+em.hashCode());
         closeableService.add(new Closeable() {
 
             @Override
             public void close() throws IOException {
                 if(em.isOpen()) {
-                	logger.debug("xxxxxxxxxxxxxxxxxCLOSING EMxxxxxxxxxxxxxxxxxHASH:"+em.hashCode());
+                	logger.debug("xxxxxxxxxxxxxxxxxCLOSING DMX EMxxxxxxxxxxxxxxxxxHASH:"+em.hashCode());
                     em.close();
                 }
             }
